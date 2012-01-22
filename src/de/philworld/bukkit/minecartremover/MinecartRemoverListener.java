@@ -13,9 +13,12 @@ public class MinecartRemoverListener implements Listener {
 		event.getVehicle().remove();
 		if(event.getExited() instanceof Player) {
 			Player p = (Player) event.getExited();
-			if(p.getGameMode() == GameMode.CREATIVE) { return; }
-			p.getInventory().addItem(new ItemStack(Material.MINECART, 1));
-			p.sendMessage(ChatColor.GREEN + "[MinecartRemover] The minecart has been added to your inventory.");
+			if(p.getGameMode() == GameMode.CREATIVE) { 
+				p.sendMessage(ChatColor.GREEN + "[MinecartRemover] The minecart has been removed.");
+			} else {
+				p.getInventory().addItem(new ItemStack(Material.MINECART, 1));
+				p.sendMessage(ChatColor.GREEN + "[MinecartRemover] The minecart has been added to your inventory.");
+			}
 		}
 	}
 }
